@@ -13,7 +13,9 @@ class ApiTaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::all();
+
+        return($tasks);
     }
 
     /**
@@ -34,9 +36,9 @@ class ApiTaskController extends Controller
      */
     public function store(Request $request)
     {
-        $request = validate([
-            'title' => 'required',
-            'description' => 'required'
+        $request->validate([
+            'title'=>'required',
+            'description'=>'required',
         ]);
 
         $task = new Task([
@@ -46,7 +48,6 @@ class ApiTaskController extends Controller
             'type' => $request->get('type'),
         ]);
         $task->save();
-        
     }
 
     /**
