@@ -1957,6 +1957,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1975,7 +1981,8 @@ __webpack_require__.r(__webpack_exports__);
 
       this.error = this.tasks = null;
       this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/tasks').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/tasks").then(function (response) {
+        _this.tasks = console.log();
         _this.loading = false;
         _this.tasks = response.data;
       })["catch"](function (error) {
@@ -2561,13 +2568,13 @@ var render = function() {
   return _c("div", { staticClass: "tasks" }, [
     _vm.loading
       ? _c("div", { staticClass: "loading" }, [
-          _vm._v("\n         Loading...\n     ")
+          _vm._v("\n        Loading...\n    ")
         ])
       : _vm._e(),
     _vm._v(" "),
     _vm.error
       ? _c("div", { staticClass: "error" }, [
-          _vm._v("\n         " + _vm._s(_vm.error) + "\n     ")
+          _vm._v("\n        " + _vm._s(_vm.error) + "\n    ")
         ])
       : _vm._e(),
     _vm._v(" "),
@@ -2578,10 +2585,18 @@ var render = function() {
             var title = ref.title
             var description = ref.description
             return _c("li", [
-              _c("strong", [_vm._v("Name:")]),
-              _vm._v(" " + _vm._s(title) + ",\n             "),
-              _c("strong", [_vm._v("Email:")]),
-              _vm._v(" " + _vm._s(description) + "\n         ")
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col s12" }, [
+                  _c("div", { staticClass: "card-panel" }, [
+                    _c("strong", [_vm._v("Name:")]),
+                    _vm._v(" " + _vm._s(title) + " "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c("strong", [_vm._v("Email:")]),
+                    _vm._v(" " + _vm._s(description) + "\n                ")
+                  ])
+                ])
+              ])
             ])
           }),
           0

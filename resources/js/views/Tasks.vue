@@ -1,5 +1,5 @@
 <template>
-   <div class="tasks">
+    <div class="tasks">
         <div class="loading" v-if="loading">
             Loading...
         </div>
@@ -9,21 +9,27 @@
         </div>
 
         <ul v-if="tasks">
-              <li v-for="{title, description} in tasks">
-                <strong>Name:</strong> {{ title }},
-                <strong>Email:</strong> {{ description }}
+            <li v-for="{ title, description } in tasks">
+                <div class="row">
+                    <div class="col s12">
+                    <div class="card-panel">
+                        <strong>Name:</strong> {{ title }} <br />
+                        <strong>Email:</strong> {{ description }}
+                    </div>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
     data() {
         return {
             loading: false,
             tasks: null,
-            error: null,
+            error: null
         };
     },
     created() {
@@ -34,15 +40,17 @@ export default {
             this.error = this.tasks = null;
             this.loading = true;
             axios
-                .get('/api/tasks')
+                .get("/api/tasks")
                 .then(response => {
-                   this.loading = false;
-                   this.tasks = response.data;
-                }).catch(error => {
-            this.loading = false;
-            this.error = error.response.data.message || error.message;
-        });
+                    this.tasks = console.log();
+                    this.loading = false;
+                    this.tasks = response.data;
+                })
+                .catch(error => {
+                    this.loading = false;
+                    this.error = error.response.data.message || error.message;
+                });
         }
     }
-}
+};
 </script>
