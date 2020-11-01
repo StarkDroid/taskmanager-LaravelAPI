@@ -1924,7 +1924,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isActive: true
+    };
+  }
+});
 
 /***/ }),
 
@@ -3740,6 +3780,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
+    _c("div", { staticClass: "tabs is-toggle is-fullwidth is-centered" }, [
+      _c("ul", [
+        _c("li", { class: { "is-active": _vm.isActive } }, [_vm._m(0)]),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2)
+      ])
+    ]),
+    _vm._v(" "),
     _c("nav", [
       _c("div", { staticClass: "nav-wrapper" }, [
         _c("a", { staticClass: "brand-logo", attrs: { href: "#" } }, [
@@ -3780,7 +3830,54 @@ var render = function() {
     _c("div", { staticClass: "container" }, [_c("router-view")], 1)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "/" } }, [
+      _c("span", { staticClass: "icon is-small" }, [
+        _c("i", { staticClass: "fas fa-chart-line" })
+      ]),
+      _vm._v(" "),
+      _c("span", [_vm._v("Dashboard")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "tasks" } }, [
+        _c("span", { staticClass: "icon is-small" }, [
+          _c("i", {
+            staticClass: "fas fa-tasks",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("span", [_vm._v("Tasks")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "users" } }, [
+        _c("span", { staticClass: "icon is-small" }, [
+          _c("i", {
+            staticClass: "fas fa-users",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("span", [_vm._v("Users")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -19162,7 +19259,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
-    name: 'home',
+    name: 'Dashboard',
     component: _views_Home__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: '/tasks',
