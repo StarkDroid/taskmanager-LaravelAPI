@@ -9,12 +9,14 @@
         </div>
 
         <ul v-if="tasks">
-            <li v-for="{ title, description } in tasks">
+            <li v-for="{ title, description, priority, type } in tasks">
                 <div class="row">
                     <div class="col s12">
                     <div class="card-panel">
-                        <strong>Name:</strong> {{ title }} <br />
-                        <strong>Email:</strong> {{ description }}
+                        <strong>Title:</strong> {{ title }} <br>
+                        <strong>Description:</strong> {{ description }} <br>
+                        <strong>Priority:</strong> {{ priority }} <br>
+                        <strong>Type:</strong> {{ type }}
                     </div>
                     </div>
                 </div>

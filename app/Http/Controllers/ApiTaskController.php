@@ -15,7 +15,7 @@ class ApiTaskController extends Controller
     {
         $tasks = Task::all();
 
-        return($tasks);
+        return $tasks;
     }
 
     /**
@@ -48,6 +48,8 @@ class ApiTaskController extends Controller
             'type' => $request->get('type'),
         ]);
         $task->save();
+
+        return $task;
     }
 
     /**
