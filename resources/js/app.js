@@ -8,6 +8,8 @@ import App from './views/App'
 import Tasks from './views/Tasks'
 import Home from './views/Home'
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 const router = new VueRouter({
     mode: 'history',
     routes: [

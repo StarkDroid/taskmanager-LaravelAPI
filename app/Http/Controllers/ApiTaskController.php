@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use App\Http\Resources\TaskResource;
+
 
 class ApiTaskController extends Controller
 {
@@ -11,9 +13,9 @@ class ApiTaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Task $task)
     {
-        $tasks = Task::all();
+        $tasks = Task::paginate(5);
 
         return $tasks;
     }
@@ -58,9 +60,9 @@ class ApiTaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task): TaskResource
     {
-        //
+        return new TaskResource($task);
     }
 
     /**

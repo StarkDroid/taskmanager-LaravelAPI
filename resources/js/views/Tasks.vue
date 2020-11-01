@@ -7,21 +7,41 @@
         <div v-if="error" class="error">
             {{ error }}
         </div>
-
+    
         <ul v-if="tasks">
+            <li v-for="{ title, description, priority, type, created_at } in tasks.data">
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {{ title }}
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    {{ description }} <br>
+                    <time datetime="2016-1-1">{{ created_at }}</time>
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item">Save</a>
+                <a href="#" class="card-footer-item">Edit</a>
+                <a href="#" class="card-footer-item">Delete</a>
+            </footer>
+        </div>
+        </li>
+        </ul>
+        <pagination :data="tasks" @pagination-change-page="fetchData"></pagination>
+
+        <!-- <ul v-if="tasks">
             <li v-for="{ title, description, priority, type } in tasks">
-                <div class="row">
-                    <div class="col s12">
-                    <div class="card-panel">
+                
                         <strong>Title:</strong> {{ title }} <br>
                         <strong>Description:</strong> {{ description }} <br>
                         <strong>Priority:</strong> {{ priority }} <br>
                         <strong>Type:</strong> {{ type }}
-                    </div>
-                    </div>
-                </div>
+                    
             </li>
-        </ul>
+        </ul> -->
     </div>
 </template>
 <script>
@@ -30,7 +50,7 @@ export default {
     data() {
         return {
             loading: false,
-            tasks: null,
+            tasks: {},
             error: null
         };
     },
@@ -38,11 +58,11 @@ export default {
         this.fetchData();
     },
     methods: {
-        fetchData() {
+        fetchData(page = 1) {
             this.error = this.tasks = null;
             this.loading = true;
             axios
-                .get("/api/tasks")
+                .get('/api/tasks?page=' + page)
                 .then(response => {
                     this.tasks = console.log();
                     this.loading = false;
