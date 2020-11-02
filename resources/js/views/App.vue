@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav>
+        <!-- <nav>
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">Logo</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -14,7 +14,7 @@
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav> -->
         <div class="container">
             <router-view></router-view>
         </div>
