@@ -13,11 +13,11 @@ class ApiTaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Task $task)
+    public function index()
     {
-        $tasks = Task::paginate(5);
+        $task = Task::orderBy('created_at', 'desc')->paginate(5);
 
-        return $tasks;
+        return $task;
     }
 
     /**
@@ -39,19 +39,13 @@ class ApiTaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'description'=>'required',
+            'title' => 'required',
+            'description' => 'required',
         ]);
 
-        $task = new Task([
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'priority' => $request->get('priority'),
-            'type' => $request->get('type'),
-        ]);
-        $task->save();
+        $task = Task::create($request->all());
 
-        return $task;
+        return new TaskResource($task);
     }
 
     /**
@@ -83,9 +77,11 @@ class ApiTaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task): TaskResource
     {
-        //
+        $task->update($request->all());
+
+        return new TaskResource($task);
     }
 
     /**
@@ -94,8 +90,10 @@ class ApiTaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($task)
     {
-        //
+        $task = Task::destroy($task);
+
+        return $task;
     }
 }

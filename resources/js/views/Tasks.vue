@@ -1,12 +1,12 @@
 <template>
     <div class="tasks">
-        <!-- Create Modal -->
+        <!-- Create Task Modal -->
         <div class="modal" v-bind:class="{'is-active':isToggle}">
             <div class="modal-background"></div>
             <div class="modal-card">
                 <header class="modal-card-head">
                     <p class="modal-card-title">Modal title</p>
-                    <button class="delete" aria-label="close" v-on:click="toggle"></button>
+                    <!-- <button class="delete" aria-label="close" v-on:click="toggle"></button> -->
                 </header>
                 <section class="modal-card-body">
                     <!-- Content ... -->
@@ -46,6 +46,7 @@
                 </li>
             </ul>
         </div>
+        
         <div class="card mb-5">
             <div class="card-content level">
                 <h5>Add Tasks with Title, Description, Priority and its type</h5>
@@ -65,24 +66,18 @@
 
         <ul v-if="tasks">
             <li class="mb-5"
-                v-for="{
-                    title,
-                    description,
-                    priority,
-                    type,
-                    created_at
-                } in tasks.data"
-            >
+                v-for="task in tasks.data"
+                :key="task.id">
                 <div class="card">
                     <header class="card-header">
                         <p class="card-header-title">
-                         {{ title }}
+                         {{ task.title }}
                         </p>
                     </header>
                     <div class="card-content">
                         <div class="content">
-                         <strong>Description:</strong> {{ description }}<br/>
-                         <strong>Time:</strong><time datetime="2016-1-1"> {{ created_at | formatDate }}</time>
+                         <strong>Description:</strong> {{ task.description }}<br/>
+                         <strong>Time:</strong><time datetime="2016-1-1"> {{ task.created_at | formatDate }}</time>
                         </div>
                     </div>
                     <footer class="card-footer">

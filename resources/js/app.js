@@ -3,11 +3,10 @@ import VueRouter from 'vue-router'
 import Bulma from 'bulma'
 import Moment from 'moment'
 
-Vue.use(VueRouter)
-
+import { routes } from './routes';
 import App from './views/App'
-import Tasks from './views/Tasks'
-import Home from './views/Home'
+
+Vue.use(VueRouter)
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
@@ -19,18 +18,7 @@ Vue.filter('formatDate', function(value){
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [
-        {
-            path: '/',
-            name: 'Dashboard',
-            component: Home
-        },
-        {
-            path: '/tasks',
-            name: 'tasks.index',
-            component: Tasks,
-        },
-    ],
+    routes
 });
 
 const app = new Vue({

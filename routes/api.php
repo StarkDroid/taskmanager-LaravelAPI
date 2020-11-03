@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('/tasks', 'ApiTaskController');
+Route::apiResources(
+  [
+      'tasks' => 'ApiTaskController'
+  ]
+);

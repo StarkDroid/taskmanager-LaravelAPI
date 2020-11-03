@@ -1915,21 +1915,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -1997,11 +1982,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -25547,17 +25527,7 @@ var render = function() {
           _c("div", { staticClass: "modal-background" }),
           _vm._v(" "),
           _c("div", { staticClass: "modal-card" }, [
-            _c("header", { staticClass: "modal-card-head" }, [
-              _c("p", { staticClass: "modal-card-title" }, [
-                _vm._v("Modal title")
-              ]),
-              _vm._v(" "),
-              _c("button", {
-                staticClass: "delete",
-                attrs: { "aria-label": "close" },
-                on: { click: _vm.toggle }
-              })
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _c("section", { staticClass: "modal-card-body" }),
             _vm._v(" "),
@@ -25578,11 +25548,11 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "tabs is-toggle is-fullwidth is-centered" }, [
         _c("ul", [
-          _vm._m(0),
+          _vm._m(1),
           _vm._v(" "),
-          _c("li", { class: { "is-active": _vm.isActive } }, [_vm._m(1)]),
+          _c("li", { class: { "is-active": _vm.isActive } }, [_vm._m(2)]),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(3)
         ])
       ]),
       _vm._v(" "),
@@ -25617,19 +25587,14 @@ var render = function() {
       _vm.tasks
         ? _c(
             "ul",
-            _vm._l(_vm.tasks.data, function(ref) {
-              var title = ref.title
-              var description = ref.description
-              var priority = ref.priority
-              var type = ref.type
-              var created_at = ref.created_at
-              return _c("li", { staticClass: "mb-5" }, [
+            _vm._l(_vm.tasks.data, function(task) {
+              return _c("li", { key: task.id, staticClass: "mb-5" }, [
                 _c("div", { staticClass: "card" }, [
                   _c("header", { staticClass: "card-header" }, [
                     _c("p", { staticClass: "card-header-title" }, [
                       _vm._v(
                         "\n                     " +
-                          _vm._s(title) +
+                          _vm._s(task.title) +
                           "\n                    "
                       )
                     ])
@@ -25638,17 +25603,19 @@ var render = function() {
                   _c("div", { staticClass: "card-content" }, [
                     _c("div", { staticClass: "content" }, [
                       _c("strong", [_vm._v("Description:")]),
-                      _vm._v(" " + _vm._s(description)),
+                      _vm._v(" " + _vm._s(task.description)),
                       _c("br"),
                       _vm._v(" "),
                       _c("strong", [_vm._v("Time:")]),
                       _c("time", { attrs: { datetime: "2016-1-1" } }, [
-                        _vm._v(" " + _vm._s(_vm._f("formatDate")(created_at)))
+                        _vm._v(
+                          " " + _vm._s(_vm._f("formatDate")(task.created_at))
+                        )
                       ])
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(3, true)
+                  _vm._m(4, true)
                 ])
               ])
             }),
@@ -25665,6 +25632,14 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("header", { staticClass: "modal-card-head" }, [
+      _c("p", { staticClass: "modal-card-title" }, [_vm._v("Modal title")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -41000,17 +40975,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bulma__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bulma__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
-/* harmony import */ var _views_Tasks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/Tasks */ "./resources/js/views/Tasks.vue");
-/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/Home */ "./resources/js/views/Home.vue");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var _views_App__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/App */ "./resources/js/views/App.vue");
+
+
 
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
-
-
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('formatDate', function (value) {
   if (value) {
@@ -41019,23 +40992,39 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('formatDate', function (value)
 });
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  routes: [{
-    path: '/',
-    name: 'Dashboard',
-    component: _views_Home__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }, {
-    path: '/tasks',
-    name: 'tasks.index',
-    component: _views_Tasks__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }]
+  routes: _routes__WEBPACK_IMPORTED_MODULE_4__["routes"]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
-    App: _views_App__WEBPACK_IMPORTED_MODULE_4__["default"]
+    App: _views_App__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   router: router
 });
+
+/***/ }),
+
+/***/ "./resources/js/routes.js":
+/*!********************************!*\
+  !*** ./resources/js/routes.js ***!
+  \********************************/
+/*! exports provided: routes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
+/* harmony import */ var _views_Tasks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./views/Tasks */ "./resources/js/views/Tasks.vue");
+/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/Home */ "./resources/js/views/Home.vue");
+
+
+var routes = [{
+  path: '/',
+  component: _views_Home__WEBPACK_IMPORTED_MODULE_1__["default"]
+}, {
+  path: '/tasks',
+  component: _views_Tasks__WEBPACK_IMPORTED_MODULE_0__["default"]
+}];
 
 /***/ }),
 
