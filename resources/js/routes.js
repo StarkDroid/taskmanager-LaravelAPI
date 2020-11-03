@@ -10,4 +10,12 @@ export const routes = [
       path: '/tasks',
       component: Tasks,
   },
+  // {
+  //   path: '/projects',
+  //   component: Projects,
+  // },
+  // {
+  //   path: '/users',
+  //   component: Users,
+  // },
 ];

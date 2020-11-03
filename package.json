@@ -20,6 +20,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "bootstrap": "^4.5.3",
+        "bootstrap-vue": "^2.18.1",
         "bulma": "^0.9.1",
         "jquery": "^3.5.1",
         "laravel-vue-pagination": "^2.3.1",

@@ -15,7 +15,9 @@ class ApiTaskController extends Controller
      */
     public function index()
     {
-        $task = Task::orderBy('created_at', 'desc')->paginate(5);
+        // $task = Task::orderBy('created_at', 'desc')->paginate(5);
+
+        $task = TaskResource::collection(Task::paginate(5));
 
         return $task;
     }
