@@ -1913,8 +1913,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -1928,6 +1926,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1982,6 +1993,25 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -25407,9 +25437,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "container" }, [_c("router-view")], 1)
-  ])
+  return _c("div", [_c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -25434,17 +25462,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "dashboard" }, [
-    _c("div", { staticClass: "tabs is-toggle is-fullwidth is-centered" }, [
-      _c("ul", [
-        _c("li", { class: { "is-active": _vm.isActive } }, [_vm._m(0)]),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _vm._m(2)
+    _c("section", { staticClass: "hero is-info" }, [
+      _c("div", { staticClass: "hero-body" }, [
+        _c("div", { staticClass: "tabs is-toggle is-fullwidth is-centered" }, [
+          _c("ul", [
+            _c("li", { class: { "is-active": _vm.isActive } }, [_vm._m(0)]),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2)
+          ])
+        ])
       ])
     ]),
     _vm._v(" "),
-    _c("p", [_vm._v("This is the homepage")])
+    _c("p", [_vm._v("Hello world, this is dashboard")])
   ])
 }
 var staticRenderFns = [
@@ -25516,120 +25548,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "tasks" },
-    [
-      _c(
-        "div",
-        { staticClass: "modal", class: { "is-active": _vm.isToggle } },
-        [
-          _c("div", { staticClass: "modal-background" }),
+  return _c("div", { staticClass: "tasks" }, [
+    _c("div", { staticClass: "modal", class: { "is-active": _vm.isToggle } }, [
+      _c("div", { staticClass: "modal-background" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "modal-card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("section", { staticClass: "modal-card-body" }),
+        _vm._v(" "),
+        _c("footer", { staticClass: "modal-card-foot" }, [
+          _c("button", { staticClass: "button is-success" }, [
+            _vm._v("Save changes")
+          ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-card" }, [
-            _vm._m(0),
+          _c("button", { staticClass: "button", on: { click: _vm.toggle } }, [
+            _vm._v("Cancel")
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "hero is-info" }, [
+      _c("div", { staticClass: "hero-body" }, [
+        _c("div", { staticClass: "tabs is-toggle is-fullwidth is-centered" }, [
+          _c("ul", [
+            _vm._m(1),
             _vm._v(" "),
-            _c("section", { staticClass: "modal-card-body" }),
+            _c("li", { class: { "is-active": _vm.isActive } }, [_vm._m(2)]),
             _vm._v(" "),
-            _c("footer", { staticClass: "modal-card-foot" }, [
-              _c("button", { staticClass: "button is-success" }, [
-                _vm._v("Save changes")
-              ]),
-              _vm._v(" "),
+            _vm._m(3)
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "container" },
+      [
+        _c("div", { staticClass: "card mb-5" }, [
+          _c("div", { staticClass: "card-content level" }, [
+            _c("h5", [
+              _vm._v(
+                "\n                Add Tasks with Title, Description, Priority and its type\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "level-right" }, [
               _c(
                 "button",
-                { staticClass: "button", on: { click: _vm.toggle } },
-                [_vm._v("Cancel")]
+                { staticClass: "button is-primary", on: { click: _vm.toggle } },
+                [_vm._v("\n                    + Add Task\n                ")]
               )
             ])
           ])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "tabs is-toggle is-fullwidth is-centered" }, [
-        _c("ul", [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("li", { class: { "is-active": _vm.isActive } }, [_vm._m(2)]),
-          _vm._v(" "),
-          _vm._m(3)
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card mb-5" }, [
-        _c("div", { staticClass: "card-content level" }, [
-          _c("h5", [
-            _vm._v("Add Tasks with Title, Description, Priority and its type")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "level-right" }, [
-            _c(
-              "button",
-              { staticClass: "button is-primary", on: { click: _vm.toggle } },
-              [_vm._v("+ Add Task")]
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _vm.loading
-        ? _c("div", { staticClass: "loading" }, [
-            _vm._v("\n        Loading...\n    ")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.error
-        ? _c("div", { staticClass: "error" }, [
-            _vm._v("\n        " + _vm._s(_vm.error) + "\n    ")
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.tasks
-        ? _c(
-            "ul",
-            _vm._l(_vm.tasks.data, function(task) {
-              return _c("li", { key: task.id, staticClass: "mb-5" }, [
-                _c("div", { staticClass: "card" }, [
-                  _c("header", { staticClass: "card-header" }, [
-                    _c("p", { staticClass: "card-header-title" }, [
-                      _vm._v(
-                        "\n                     " +
-                          _vm._s(task.title) +
-                          "\n                    "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-content" }, [
-                    _c("div", { staticClass: "content" }, [
-                      _c("strong", [_vm._v("Description:")]),
-                      _vm._v(" " + _vm._s(task.description)),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("strong", [_vm._v("Time:")]),
-                      _c("time", { attrs: { datetime: "2016-1-1" } }, [
+        ]),
+        _vm._v(" "),
+        _vm.loading
+          ? _c("div", { staticClass: "loading" }, [
+              _vm._v("\n        Loading...\n    ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.error
+          ? _c("div", { staticClass: "error" }, [
+              _vm._v("\n        " + _vm._s(_vm.error) + "\n    ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.tasks
+          ? _c(
+              "ul",
+              _vm._l(_vm.tasks.data, function(task) {
+                return _c("li", { key: task.id, staticClass: "mb-5" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("header", { staticClass: "card-header" }, [
+                      _c("p", { staticClass: "card-header-title" }, [
                         _vm._v(
-                          " " + _vm._s(_vm._f("formatDate")(task.created_at))
+                          "\n                        " +
+                            _vm._s(task.title) +
+                            "\n                    "
                         )
                       ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(4, true)
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-content" }, [
+                      _c("div", { staticClass: "content" }, [
+                        _c("strong", [_vm._v("Description:")]),
+                        _vm._v(" " + _vm._s(task.description)),
+                        _c("br"),
+                        _vm._v(" "),
+                        _c("strong", [_vm._v("Time:")]),
+                        _c("time", { attrs: { datetime: "2016-1-1" } }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm._f("formatDate")(task.created_at))
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(4, true)
+                  ])
                 ])
-              ])
-            }),
-            0
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("pagination", {
-        attrs: { data: _vm.tasks },
-        on: { "pagination-change-page": _vm.fetchData }
-      })
-    ],
-    1
-  )
+              }),
+              0
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("pagination", {
+          attrs: { data: _vm.tasks },
+          on: { "pagination-change-page": _vm.fetchData }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
