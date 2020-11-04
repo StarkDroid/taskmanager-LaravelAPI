@@ -1,116 +1,12 @@
 <template>
     <div class="tasks">
-        <!-- Create Task Modal -->
-        <div class="modal" v-bind:class="{ 'is-active': isToggle }">
-            <div class="modal-background"></div>
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <p class="modal-card-title">Create New Task</p>
-                </header>
-                <section class="modal-card-body">
-                    <form>
-                        <div class="field">
-                            <label class="label">Title</label>
-                            <div class="control">
-                                <input
-                                    class="input"
-                                    type="text"
-                                    placeholder="Enter your task"
-                                />
-                            </div>
-                            <div class="field mt-4">
-                                <label class="label">Description</label>
-                                <div class="control">
-                                    <input
-                                        class="input"
-                                        type="text"
-                                        placeholder="Enter the description"
-                                    />
-                                </div>
-                            </div>
-                            <div class="field mt-4">
-                                <label class="label">Priority</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select>
-                                        <option>Select dropdown</option>
-                                        <option>With options</option>
-                                        <option>With options</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <label class="label">Type</label>
-                                <div class="control">
-                                    <div class="select">
-                                        <select>
-                                        <option>Select dropdown</option>
-                                        <option>With options</option>
-                                        <option>With options</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </section>
-                <footer class="modal-card-foot">
-                    <button class="button is-success">Save changes</button>
-                    <button class="button" v-on:click="toggle">Cancel</button>
-                </footer>
-            </div>
-        </div>
-
-        <!-- NAVBAR CONTENT -->
-        <section class="hero is-info">
-            <div class="hero-body">
-                <div class="tabs is-toggle is-fullwidth is-centered">
-                    <ul>
-                        <li>
-                            <a href="/">
-                                <span class="icon is-small"
-                                    ><i class="fas fa-chart-line"></i
-                                ></span>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li v-bind:class="{ 'is-active': isActive }">
-                            <a href="tasks">
-                                <span class="icon is-small"
-                                    ><i
-                                        class="fas fa-tasks"
-                                        aria-hidden="true"
-                                    ></i
-                                ></span>
-                                <span>Tasks</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="users">
-                                <span class="icon is-small"
-                                    ><i
-                                        class="fas fa-users"
-                                        aria-hidden="true"
-                                    ></i
-                                ></span>
-                                <span>Users</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
         <div class="container">
-            <div class="card mb-5">
-                <div class="card-content level">
-                    <h5>
+            <div class="mb-5 card">
+                <div class="card-content">
                         Add Tasks with Title, Description, Priority and its type
-                    </h5>
-                    <div class="level-right">
-                        <button class="button is-primary" v-on:click="toggle">
+                        <button @click="addNewTask = true" class="button is-primary is-pulled-right">
                             + Add Task
                         </button>
-                    </div>
                 </div>
             </div>
 
@@ -122,31 +18,55 @@
                 {{ error }}
             </div>
 
-            <ul v-if="tasks">
-                <li class="mb-5" v-for="task in tasks.data" :key="task.id">
-                    <div class="card">
-                        <header class="card-header">
-                            <p class="card-header-title">
+            <!-- Create New Task Modal  -->
+            <b-modal v-model="addNewTask">
+                <form @submit.prevent="addTask">
+                <div class="card">
+                <div class="card-header">
+                  <div class="card-header-title">  
+                      Create New Task
+                  </div>
+                </div>
+                    <div class="card-content">        
+                        <div class="field">
+                            <label class="label">Title</label>
+                            <input class="input" type="text" value="title" placeholder="Enter the title" v-model="tasks.title">
+                        </div>
+                        <div class="field">
+                            <label class="label">Description</label>
+                            <input class="input" type="text" value="description" placeholder="Enter the description" v-model="tasks.description">
+                        </div>
+                    </div>
+                <footer class="p-2 card-footer level">
+                    <b-button class="ml-3 button is-outlined is-dark">Cancel</b-button>
+                    <b-button type="submit" value="submit" class="mr-3 button is-success">Save</b-button>
+                </footer>
+                </div>
+                </form>
+            </b-modal>
+            
+
+                    <!-- PAGINATED TASK LIST -->
+                    <div class="card mb-5" v-for="task in tasks.data" :key="task.id">
+                        <div class="card-header">
+                            <div class="card-header-title">
                                 {{ task.title }}
-                            </p>
-                        </header>
-                        <div class="card-content">
-                            <div class="content">
-                                <strong>Description:</strong>
-                                {{ task.description }}<br />
-                                <strong>Time:</strong
-                                ><time datetime="2016-1-1">
-                                    {{ task.created_at | formatDate }}</time
-                                >
                             </div>
                         </div>
-                        <footer class="card-footer">
-                            <a href="#" class="card-footer-item">Edit</a>
-                            <a href="#" class="card-footer-item">Delete</a>
+                        <div class="card-content">
+                                <strong>Description:</strong>
+                                {{ task.description }}<br />
+                                <strong>Time:</strong>
+                                {{ task.created_at | formatDate }}
+                        </div>
+                        <footer class="p-2 card-footer level">
+                            <div class="ml-5 level-left">
+                            <b-button icon-left="pen" class="level-item button is-primary is-light">Edit</b-button>
+                            <b-button  icon-left="delete" class="level-item button is-danger is-light">Delete</b-button>
+                            </div>
                         </footer>
                     </div>
-                </li>
-            </ul>
+
             <pagination
                 :data="tasks"
                 @pagination-change-page="fetchData"
@@ -160,11 +80,18 @@ export default {
     data() {
         return {
             loading: false,
-            tasks: {},
             error: null,
             isActive: true,
-            isToggle: null
+            isToggle: null,
+            addNewTask: false
+
         };
+
+        tasks: {
+            id = null,
+            title = '',
+            description = ''
+        }
     },
     created() {
         this.fetchData();
@@ -192,7 +119,11 @@ export default {
         },
 
         addTask() {
-            
+            axios
+            .post("/api/tasks", tasks)
+            .catch(function (error) {
+                console.log(error);
+            });
         }
     }
 };

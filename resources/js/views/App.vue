@@ -1,17 +1,38 @@
 <template>
     <div>
-        <b-navbar toggleable="lg" type="dark" variant="primary">
-            <b-navbar-brand href="/">IMI-Clone</b-navbar-brand>
-        <b-navbar-toggle target="mobile-view" is-nav></b-navbar-toggle>
-        <b-collapse id="mobile-view" is-nav>
-            <b-navbar-nav>
-                <b-nav-item to="/" exact exact-active-class="active">Dashboard</b-nav-item>
-                <b-nav-item to="projects" exact exact-active-class="active">Projects</b-nav-item> 
-                <b-nav-item to="tasks" exact exact-active-class="active">Tasks</b-nav-item> 
-                <b-nav-item to="users" exact exact-active-class="active">Users</b-nav-item> 
-            </b-navbar-nav>
-        </b-collapse>
-        </b-navbar>
+        <b-navbar :centered="true" :shadow="true" class="is-info">
+        <template slot="brand">
+            <b-navbar-item tag="router-link" :to="{ path: '/' }">
+                <img
+                    src="https://raw.githubusercontent.com/StarkDroid/taskmanager-LaravelAPI/master/public/imi-logo.png"
+                >
+                 <strong class="ml-1">IMI-Clone</strong>
+            </b-navbar-item>
+        </template>
+        <template slot="start">
+            <b-navbar-item tag="router-link" :to="{ path: '/' }">
+                Dashboard
+            </b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ path: '/projects' }">
+                Projects
+            </b-navbar-item>
+            <b-navbar-item tag="router-link" :to="{ path: '/tasks' }">
+                Tasks
+            </b-navbar-item>
+        </template>
+        <template slot="end">
+            <b-navbar-item tag="div">
+                <div class="buttons">
+                    <a href="users" class="button is-light">
+                        <strong>Users</strong>
+                    </a>
+                    <a href="profile" class="button is-warning">
+                        <strong>Profile</strong>
+                    </a>
+                </div>
+            </b-navbar-item>
+        </template>
+    </b-navbar>
         <router-view></router-view>
     </div>
 </template>
@@ -19,8 +40,8 @@
 export default {
     data() {
         return {
-            isActive: false
+            shadow: true
         }
-    },
+    }
 };
 </script>
