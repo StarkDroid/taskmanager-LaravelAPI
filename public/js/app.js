@@ -2067,6 +2067,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2074,22 +2101,15 @@ __webpack_require__.r(__webpack_exports__);
       loading: false,
       error: null,
       isActive: true,
-      isToggle: null,
-      addNewTask: false
+      addNewTaskModal: false,
+      title: '',
+      description: ''
     };
-
-    tasks: {
-      id = null, title = '', description = '';
-    }
   },
   created: function created() {
     this.fetchData();
-    this.addTask();
   },
   methods: {
-    toggle: function toggle() {
-      this.isToggle = !this.isToggle;
-    },
     fetchData: function fetchData() {
       var _this = this;
 
@@ -2105,10 +2125,16 @@ __webpack_require__.r(__webpack_exports__);
         _this.error = error.response.data.message || error.message;
       });
     },
-    addTask: function addTask() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/tasks", tasks)["catch"](function (error) {
-        console.log(error);
+    addNewTask: function addNewTask() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/tasks", {
+        title: this.title,
+        description: this.description
+      }).then(function (response) {
+        _this2.fetchData();
       });
+      this.addNewTaskModal = false;
     }
   }
 });
@@ -42950,7 +42976,7 @@ var render = function() {
         _c("div", { staticClass: "mb-5 card" }, [
           _c("div", { staticClass: "card-content" }, [
             _vm._v(
-              "\n                    Add Tasks with Title, Description, Priority and its type\n                    "
+              "\n                Add Tasks with Title, Description, Priority and its type\n                "
             ),
             _c(
               "button",
@@ -42958,15 +42984,11 @@ var render = function() {
                 staticClass: "button is-primary is-pulled-right",
                 on: {
                   click: function($event) {
-                    _vm.addNewTask = true
+                    _vm.addNewTaskModal = true
                   }
                 }
               },
-              [
-                _vm._v(
-                  "\n                        + Add Task\n                    "
-                )
-              ]
+              [_vm._v("\n                    + Add Task\n                ")]
             )
           ])
         ]),
@@ -42987,35 +43009,35 @@ var render = function() {
           "b-modal",
           {
             model: {
-              value: _vm.addNewTask,
+              value: _vm.addNewTaskModal,
               callback: function($$v) {
-                _vm.addNewTask = $$v
+                _vm.addNewTaskModal = $$v
               },
-              expression: "addNewTask"
+              expression: "addNewTaskModal"
             }
           },
           [
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.addTask($event)
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "card" }, [
-                  _c("div", { staticClass: "card-header" }, [
-                    _c("div", { staticClass: "card-header-title" }, [
-                      _vm._v(
-                        "  \n                  Create New Task\n              "
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-content" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("div", { staticClass: "card-header-title" }, [
+                  _vm._v(
+                    "\n                        Create New Task\n                    "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-content" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.addNewTask()
+                      }
+                    }
+                  },
+                  [
                     _c("div", { staticClass: "field" }, [
                       _c("label", { staticClass: "label" }, [_vm._v("Title")]),
                       _vm._v(" "),
@@ -43024,23 +43046,23 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.tasks.title,
-                            expression: "tasks.title"
+                            value: _vm.title,
+                            expression: "title"
                           }
                         ],
                         staticClass: "input",
                         attrs: {
                           type: "text",
-                          value: "title",
+                          name: "title",
                           placeholder: "Enter the title"
                         },
-                        domProps: { value: _vm.tasks.title },
+                        domProps: { value: _vm.title },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.tasks, "title", $event.target.value)
+                            _vm.title = $event.target.value
                           }
                         }
                       })
@@ -43056,57 +43078,62 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.tasks.description,
-                            expression: "tasks.description"
+                            value: _vm.description,
+                            expression: "description"
                           }
                         ],
                         staticClass: "input",
                         attrs: {
                           type: "text",
-                          value: "description",
+                          name: "description",
                           placeholder: "Enter the description"
                         },
-                        domProps: { value: _vm.tasks.description },
+                        domProps: { value: _vm.description },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(
-                              _vm.tasks,
-                              "description",
-                              $event.target.value
-                            )
+                            _vm.description = $event.target.value
                           }
                         }
                       })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "footer",
-                    { staticClass: "p-2 card-footer level" },
-                    [
-                      _c(
-                        "b-button",
-                        { staticClass: "ml-3 button is-outlined is-dark" },
-                        [_vm._v("Cancel")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-button",
-                        {
-                          staticClass: "mr-3 button is-success",
-                          attrs: { type: "submit", value: "submit" }
-                        },
-                        [_vm._v("Save")]
-                      )
-                    ],
-                    1
-                  )
-                ])
-              ]
-            )
+                    ]),
+                    _vm._v(" "),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "level" },
+                      [
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "button is-outlined is-dark",
+                            on: {
+                              click: function($event) {
+                                _vm.addNewTaskModal = false
+                              }
+                            }
+                          },
+                          [_vm._v("Cancel")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button is-success",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Save")]
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                )
+              ])
+            ])
           ]
         ),
         _vm._v(" "),
@@ -43115,25 +43142,23 @@ var render = function() {
             _c("div", { staticClass: "card-header" }, [
               _c("div", { staticClass: "card-header-title" }, [
                 _vm._v(
-                  "\n                            " +
+                  "\n                    " +
                     _vm._s(task.title) +
-                    "\n                        "
+                    "\n                "
                 )
               ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-content" }, [
               _c("strong", [_vm._v("Description:")]),
-              _vm._v(
-                "\n                            " + _vm._s(task.description)
-              ),
+              _vm._v("\n                " + _vm._s(task.description)),
               _c("br"),
               _vm._v(" "),
               _c("strong", [_vm._v("Time:")]),
               _vm._v(
-                "\n                            " +
+                "\n                " +
                   _vm._s(_vm._f("formatDate")(task.created_at)) +
-                  "\n                    "
+                  "\n            "
               )
             ]),
             _vm._v(" "),
