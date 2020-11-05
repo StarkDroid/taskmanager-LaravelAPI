@@ -92,7 +92,8 @@ class ApiTaskController extends Controller
      */
     public function destroy($task)
     {
-        $task = Task::destroy($task);
+        $task = Task::Find($task);
+        $task->delete();
 
         return $task;
     }

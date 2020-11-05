@@ -2094,6 +2094,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2137,6 +2138,13 @@ __webpack_require__.r(__webpack_exports__);
       this.title = null;
       this.description = null;
       this.addNewTaskModal = false;
+    },
+    deleteTask: function deleteTask(id) {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/api/tasks/' + id).then(function (response) {
+        _this3.fetchData();
+      });
     }
   }
 });
@@ -42975,15 +42983,15 @@ var render = function() {
       "div",
       { staticClass: "container" },
       [
-        _c("div", { staticClass: "mb-5 card" }, [
-          _c("div", { staticClass: "card-content" }, [
+        _c("div", { staticClass: "mb-5 card has-background-info-light" }, [
+          _c("div", { staticClass: "card-content level" }, [
             _vm._v(
               "\n                Add Tasks with Title, Description, Priority and its type\n                "
             ),
             _c(
               "button",
               {
-                staticClass: "button is-primary is-pulled-right",
+                staticClass: "button is-primary",
                 on: {
                   click: function($event) {
                     _vm.addNewTaskModal = true
@@ -43019,123 +43027,132 @@ var render = function() {
             }
           },
           [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _c("div", { staticClass: "card-header-title" }, [
-                  _vm._v(
-                    "\n                        Create New Task\n                    "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-content" }, [
-                _c(
-                  "form",
-                  {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.addNewTask()
-                      }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "field" }, [
-                      _c("label", { staticClass: "label" }, [_vm._v("Title")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.title,
-                            expression: "title"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: {
-                          type: "text",
-                          name: "title",
-                          placeholder: "Enter the title"
-                        },
-                        domProps: { value: _vm.title },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.title = $event.target.value
-                          }
+            _c(
+              "div",
+              {
+                staticClass: "card column is-half",
+                staticStyle: { margin: "auto" }
+              },
+              [
+                _c("div", { staticClass: "card-header" }, [
+                  _c("div", { staticClass: "card-header-title" }, [
+                    _vm._v(
+                      "\n                        Create New Task\n                    "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-content" }, [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.addNewTask()
                         }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "field" }, [
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("Description")
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "field" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Title")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.title,
+                              expression: "title"
+                            }
+                          ],
+                          staticClass: "input",
+                          attrs: {
+                            type: "text",
+                            name: "title",
+                            placeholder: "Enter the title"
+                          },
+                          domProps: { value: _vm.title },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.title = $event.target.value
+                            }
+                          }
+                        })
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.description,
-                            expression: "description"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: {
-                          type: "text",
-                          name: "description",
-                          placeholder: "Enter the description"
-                        },
-                        domProps: { value: _vm.description },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.description = $event.target.value
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("hr"),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "level" },
-                      [
-                        _c(
-                          "b-button",
-                          {
-                            staticClass: "button is-outlined is-dark",
-                            on: {
-                              click: function($event) {
-                                _vm.addNewTaskModal = false
-                              }
-                            }
-                          },
-                          [_vm._v("Cancel")]
-                        ),
+                      _c("div", { staticClass: "field" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Description")
+                        ]),
                         _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "button is-success",
-                            attrs: { type: "submit" }
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.description,
+                              expression: "description"
+                            }
+                          ],
+                          staticClass: "input",
+                          attrs: {
+                            type: "text",
+                            name: "description",
+                            placeholder: "Enter the description"
                           },
-                          [_vm._v("Save")]
-                        )
-                      ],
-                      1
-                    )
-                  ]
-                )
-              ])
-            ])
+                          domProps: { value: _vm.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.description = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("hr"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "level" },
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              staticClass: "button is-outlined is-dark",
+                              on: {
+                                click: function($event) {
+                                  _vm.addNewTaskModal = false
+                                }
+                              }
+                            },
+                            [_vm._v("Cancel")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "button is-success",
+                              attrs: { type: "submit" }
+                            },
+                            [_vm._v("Save")]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ])
+              ]
+            )
           ]
         ),
         _vm._v(" "),
@@ -43182,7 +43199,12 @@ var render = function() {
                     "b-button",
                     {
                       staticClass: "level-item button is-danger is-light",
-                      attrs: { "icon-left": "delete" }
+                      attrs: { "icon-left": "delete" },
+                      on: {
+                        click: function($event) {
+                          return _vm.deleteTask(task.id)
+                        }
+                      }
                     },
                     [_vm._v("Delete")]
                   )

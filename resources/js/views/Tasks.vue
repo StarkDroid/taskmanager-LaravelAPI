@@ -1,12 +1,12 @@
 <template>
     <div class="tasks">
         <div class="container">
-            <div class="mb-5 card">
-                <div class="card-content">
+            <div class="mb-5 card has-background-info-light">
+                <div class="card-content level">
                     Add Tasks with Title, Description, Priority and its type
                     <button
                         @click="addNewTaskModal = true"
-                        class="button is-primary is-pulled-right"
+                        class="button is-primary"
                     >
                         + Add Task
                     </button>
@@ -23,7 +23,7 @@
 
             <!-- Create New Task Modal  -->
             <b-modal v-model="addNewTaskModal">
-                <div class="card">
+                <div class="card column is-half" style="margin: auto">
                     <div class="card-header">
                         <div class="card-header-title">
                             Create New Task
@@ -87,6 +87,7 @@
                         >
                         <b-button
                             icon-left="delete"
+                            @click="deleteTask(task.id)"
                             class="level-item button is-danger is-light"
                             >Delete</b-button
                         >
@@ -110,7 +111,6 @@ export default {
             error: null,
             isActive: true,
             addNewTaskModal: false,
-
             title: '',
             description: ''
         };  
@@ -149,6 +149,14 @@ export default {
             this.title = null;
             this.description = null;
             this.addNewTaskModal = false;
+        },
+
+        deleteTask(id) {
+            axios
+            .delete('/api/tasks/' + id)
+            .then(response => {
+                this.fetchData();
+            })
         }
     }
 };
