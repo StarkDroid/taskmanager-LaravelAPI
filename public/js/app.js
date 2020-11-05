@@ -2134,6 +2134,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this2.fetchData();
       });
+      this.title = null;
+      this.description = null;
       this.addNewTaskModal = false;
     }
   }

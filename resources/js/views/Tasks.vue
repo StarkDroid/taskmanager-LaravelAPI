@@ -146,6 +146,8 @@ export default {
             .then(response => {
                 this.fetchData();
             })
+            this.title = null;
+            this.description = null;
             this.addNewTaskModal = false;
         }
     }
