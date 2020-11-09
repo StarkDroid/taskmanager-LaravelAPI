@@ -87,7 +87,7 @@
                         >
                         <b-button
                             icon-left="delete"
-                            @click="deleteTask(task.id)"
+                            @click="confirmTaskDelete(task.id)"
                             class="level-item button is-danger is-light"
                             >Delete</b-button
                         >
@@ -151,6 +151,17 @@ export default {
             this.addNewTaskModal = false;
         },
 
+        confirmTaskDelete(id) {
+                this.$buefy.dialog.confirm({
+                    title: 'Deleting Task',
+                    message: 'Are you sure you want to <b>delete</b> this task?',
+                    confirmText: 'Delete',
+                    type: 'is-danger',
+                    hasIcon: true,
+                    onConfirm: () => this.deleteTask(id)
+                })
+            },
+            
         deleteTask(id) {
             axios
             .delete('/api/tasks/' + id)

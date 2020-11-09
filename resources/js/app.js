@@ -16,7 +16,7 @@ Vue.component('pagination', require('laravel-vue-pagination'));
 
 Vue.filter('formatDate', function(value){
     if(value){
-        return Moment(String(value)).format('DD,MMMM,YYYY hh:mm')
+        return Moment(String(value)).format('DD-MMM-YYYY hh:mm')
     }
 });
 

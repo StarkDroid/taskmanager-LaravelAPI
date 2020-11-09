@@ -2139,11 +2139,25 @@ __webpack_require__.r(__webpack_exports__);
       this.description = null;
       this.addNewTaskModal = false;
     },
-    deleteTask: function deleteTask(id) {
+    confirmTaskDelete: function confirmTaskDelete(id) {
       var _this3 = this;
 
+      this.$buefy.dialog.confirm({
+        title: 'Deleting Task',
+        message: 'Are you sure you want to <b>delete</b> this task?',
+        confirmText: 'Delete',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: function onConfirm() {
+          return _this3.deleteTask(id);
+        }
+      });
+    },
+    deleteTask: function deleteTask(id) {
+      var _this4 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/api/tasks/' + id).then(function (response) {
-        _this3.fetchData();
+        _this4.fetchData();
       });
     }
   }
@@ -43202,7 +43216,7 @@ var render = function() {
                       attrs: { "icon-left": "delete" },
                       on: {
                         click: function($event) {
-                          return _vm.deleteTask(task.id)
+                          return _vm.confirmTaskDelete(task.id)
                         }
                       }
                     },
@@ -58547,7 +58561,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(buefy__WEBPACK_IMPORTED_MODULE_3_
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('formatDate', function (value) {
   if (value) {
-    return moment__WEBPACK_IMPORTED_MODULE_2___default()(String(value)).format('DD,MMMM,YYYY hh:mm');
+    return moment__WEBPACK_IMPORTED_MODULE_2___default()(String(value)).format('DD-MMM-YYYY hh:mm');
   }
 });
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
